@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>WebGl</title>
+    <title>Fractals</title>
 </head>
 <body style="margin: 0; padding: 0; overflow: hidden;">
     <canvas id="canvas">
@@ -21,13 +21,12 @@
         precision highp float;
 
 		uniform vec2 u_resolution;
-		uniform highp vec2 a, b, start;
+		uniform highp vec2 a, b;
 		uniform float h;
 
         void main(){
 			vec2 c = (gl_FragCoord.xy + a) * b;
 			vec2 z = c;
-			//z *= h;
 			float tmp = 0.0, J, sinJ, sinJ2, sinJ3, sinJ4;
 			for (float i = 0.0; i < 360.0; i += 8.0) {
 				if (z.x > 2.0) z.x = 3.0;
@@ -35,8 +34,8 @@
 				else if (z.x < -2.0) z.x = -3.0;
 				else if (z.y < -2.0) z.y = -3.0;
 				else {
-					tmp = z.x * z.x - z.y * z.y + start.x;
-					z.y = 2.0 * z.x * z.y + start.y;
+					tmp = z.x * z.x - z.y * z.y + c.x;
+					z.y = 2.0 * z.x * z.y + c.y;
 					z.x = tmp;
 					J = i;
 				}
@@ -131,39 +130,16 @@
             gl.enableVertexAttribArray(positionAttribLocation);
 
 			var a = gl.getUniformLocation(program, "a"),
-				b = gl.getUniformLocation(program, "b"),
-				h = gl.getUniformLocation(program, "h"),
-				start = gl.getUniformLocation(program, "start");
-
+				b = gl.getUniformLocation(program, "b");
+				
             gl.useProgram(program);
 			
-			var x1 = -4 * window.innerWidth / window.innerHeight, 
-				y1 = -4, 
-				x2 = 4 * window.innerWidth / window.innerHeight, 
-				y2 = 4, 
+			var x1 = -3 * window.innerWidth / window.innerHeight, 
+				y1 = -3, 
+				x2 = 3 * window.innerWidth / window.innerHeight, 
+				y2 = 3, 
 				stepX = (x2 - x1) / window.innerWidth, 
-				stepY = (y2 - y1) / window.innerHeight,
-				height = 1,
-				timeOut = false;
-			
-			var timer = setInterval(function() {
-				timeOut = true;
-			}, 60);
-				
-			canvas.addEventListener('mousemove', function(event) {
-				if (timeOut) {
-					timeOut = !timeOut;
-					gl.clearColor(0.0, 0.0, 0.0, 1.0);
-					gl.clear(gl.COLOR_BUFFER_BIT);
-					
-					gl.uniform2fv(start, [x1 + stepX * event.clientX, y1 + stepY * event.clientY]);
-					gl.uniform2fv(a, [x1 / stepX, y1 / stepY]);
-					gl.uniform2fv(b, [stepX, stepY]);
-					gl.uniform1f(h, height);
-					
-					gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
-				}
-			});
+				stepY = (y2 - y1) / window.innerHeight;
 			
 			canvas.onclick = function(event) {
 				x1 = x1 + stepX * (event.clientX - window.innerWidth / 4);
@@ -172,6 +148,14 @@
 				stepY /= 2;
 				x2 = x1 + event.clientX * stepX;
 				y2 = y1 + event.clientY * stepY;
+				
+				gl.clearColor(0.0, 0.0, 0.0, 1.0);
+				gl.clear(gl.COLOR_BUFFER_BIT);
+					
+				gl.uniform2fv(a, [x1 / stepX, y1 / stepY]);
+				gl.uniform2fv(b, [stepX, stepY]);
+					
+				gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 			}
 		}
 		
