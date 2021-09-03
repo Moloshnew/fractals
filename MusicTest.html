@@ -10,6 +10,8 @@
         var audio = document.getElementById(“audio”);
         audio.play();
         
+        prep();
+        
         function prep() {
              var mctx = new AudioContext(),
                  analyser =mctx.createAnalyser(),
