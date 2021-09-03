@@ -72,8 +72,8 @@
                 return;
             }
             
-            canvas.width = 1000;
-            canvas.height = 1000;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
             
             gl.viewport(0, 0, canvas.width, canvas.height);
 
@@ -143,7 +143,7 @@
 				x2 = 3 * canvas.width / canvas.height, 
 				y2 = 3, 
 				stepX = (x2 - x1) / canvas.width, 
-				stepY = (y2 - y1) / canvas.weight,
+				stepY = (y2 - y1) / canvas.height,
 				height = 1,
 				timeOut = false;
 			
