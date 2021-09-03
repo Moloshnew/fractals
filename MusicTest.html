@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <title>music</title>
+</head>
+<body>
+    <audio src=“spectre.mp3” id=“audio”></audio>
+
+    <script>
+        var audio = document.getElementById(“audio”);
+        audio.play();
+        
+        function prep() {
+             var mctx = new AudioContext(),
+                 analyser =mctx.createAnalyser(),
+                 msrc = mctx.createMediaElementSource(audio);
+            
+            msrc.connect(analyser);
+            analyser.connect(mctx.destination);
+            
+        }
+    </script>
+</body>
