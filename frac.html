@@ -152,8 +152,8 @@
 			canvas.onclick = function(event) {
 				x1 = x1 + stepX * (event.clientX - window.innerWidth / 4);
 				y1 = y1 + stepY * (window.innerHeight - event.clientY - window.innerHeight / 4);
-				stepX /= 2;
-				stepY /= 2;
+				stepX /= 2.0;
+				stepY /= 2.0;
 				x2 = x1 + event.clientX * stepX;
 				y2 = y1 + event.clientY * stepY;
 				
