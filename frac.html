@@ -131,15 +131,23 @@
 
 			var a = gl.getUniformLocation(program, "a"),
 				b = gl.getUniformLocation(program, "b");
-				
-            gl.useProgram(program);
-			
-			var x1 = -8 * window.innerWidth / window.innerHeight, 
-				y1 = -8, 
-				x2 = 8 * window.innerWidth / window.innerHeight, 
-				y2 = 8, 
+
+			gl.useProgram(program);
+
+			var x1 = -8.0 * window.innerWidth / window.innerHeight, 
+				y1 = -8.0, 
+				x2 = 8.0 * window.innerWidth / window.innerHeight, 
+				y2 = 8.0, 
 				stepX = (x2 - x1) / window.innerWidth, 
 				stepY = (y2 - y1) / window.innerHeight;
+			
+			gl.clearColor(0.0, 0.0, 0.0, 1.0);
+			gl.clear(gl.COLOR_BUFFER_BIT);
+					
+			gl.uniform2fv(a, [x1 / stepX, y1 / stepY]);
+			gl.uniform2fv(b, [stepX, stepY]);
+					
+			gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 			
 			canvas.onclick = function(event) {
 				x1 = x1 + stepX * (event.clientX - window.innerWidth / 4);
