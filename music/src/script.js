@@ -1,7 +1,6 @@
 var audio, mctx, analyser, msrc, array;
 
 audio = document.getElementById("audio");
-audio.crossOrigin = "anonymous";
 
 document.onclick = function() {
 	prep();
@@ -10,19 +9,20 @@ document.onclick = function() {
 
 
 function prep () {
+	console.log(1);
 	mctx = new AudioContext();
 	analyser = mctx.createAnalyser();
 	msrc = mctx.createMediaElementSource(audio);
 	msrc.connect(analyser);
 	analyser.connect(mctx.destination);
-	//loop();
+	loop();
 }
 
 function loop () {
-	window.requestAnimationFrame(loop);
-	
 	array = new Uint8Array(analyser.frequencyBitCount);
 	analyser.getByteFrequencyData(array);
 	
 	console.log(array[40]);
+	
+	window.requestAnimationFrame(loop);
 }
