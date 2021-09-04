@@ -74,7 +74,6 @@
             
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-          
             gl.viewport(0, 0, canvas.width, canvas.height);
 
             var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -86,14 +85,14 @@
             gl.compileShader(vertexShader);
             if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
                 alert('Error compiling vertex shader!');
-				console.error(gl.getShaderInfoLog(vertexShader));
+		console.error(gl.getShaderInfoLog(vertexShader));
                 return;
             }
 
             gl.compileShader(fragmentShader);
             if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
                 alert('Error compiling fragment shader!');
-				console.error(gl.getShaderInfoLog(fragmentShader));
+		console.error(gl.getShaderInfoLog(fragmentShader));
                 return;
             }
             
