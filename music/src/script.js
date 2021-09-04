@@ -9,7 +9,6 @@ document.onclick = function() {
 
 
 function prep () {
-	console.log(1);
 	mctx = new AudioContext();
 	analyser = mctx.createAnalyser();
 	msrc = mctx.createMediaElementSource(audio);
