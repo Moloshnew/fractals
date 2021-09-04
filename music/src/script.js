@@ -21,7 +21,7 @@ function loop () {
 	array = new Uint8Array(analyser.frequencyBitCount);
 	analyser.getByteFrequencyData(array);
 	
-	console.log(array[40]);
+	console.log(array);
 	
 	window.requestAnimationFrame(loop);
 }
