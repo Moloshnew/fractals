@@ -36,7 +36,7 @@ void main(){
     else if (z.y < -2.0) z.y = -3.0;
     else {
         tmp = z.x * z.x - z.y * z.y + start.x;
-        z.y = 2.0 * z.x * z.y + start.y;
+        z.y = 1.0 * z.x * z.y + start.y;
         z.x = tmp;
         J = i;
     }
