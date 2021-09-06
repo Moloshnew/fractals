@@ -35,8 +35,8 @@ void main(){
     else if (z.x < -2.0) z.x = -3.0;
     else if (z.y < -2.0) z.y = -3.0;
     else {
-        tmp = cos(z.x) + start.y;
-        z.y = sin(z.y) + start.x;
+        tmp = cos(z.x) * 2 + start.x;
+        z.y = sin(z.y) * 2 + start.y;
         z.x = tmp;
         J = i;
     }
