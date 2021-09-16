@@ -70,10 +70,10 @@
                 return;
             }
             
-            canvas.width = 10000;
-            canvas.height = 10000;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
             
-            gl.viewport(0, 0, 10000, 10000);
+            gl.viewport(0, 0, window.innerWidth, window.innerHeight);
 
             var vertexShader = gl.createShader(gl.VERTEX_SHADER);
                 fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
@@ -138,8 +138,8 @@
 				y1 = -2.0, 
 				x2 = 2.0, 
 				y2 = 2.0, 
-				stepX = (x2 - x1) / 10000, 
-				stepY = (y2 - y1) / 10000;
+				stepX = (x2 - x1) / window.innerWidth, 
+				stepY = (y2 - y1) / window.innerHeight;
 			
 			gl.clearColor(0.0, 0.0, 0.0, 1.0);
 			gl.clear(gl.COLOR_BUFFER_BIT);
@@ -150,8 +150,8 @@
 			gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 			
 			canvas.onclick = function(event) {
-				x1 = x1 + stepX * (event.clientX - 10000 / 4);
-				y1 = y1 + stepY * (10000 - event.clientY - 10000 / 4);
+				x1 = x1 + stepX * (event.clientX - window.innerWidth / 4);
+				y1 = y1 + stepY * (window.innerHeight - event.clientY - window.innerHeight / 4);
 				stepX /= 2.0;
 				stepY /= 2.0;
 				x2 = x1 + event.clientX * stepX;
