@@ -142,7 +142,7 @@ void main(){
 			
 			var timer = setInterval(function() {
 				timeOut = true;
-			}, 33);
+			}, 30);
 				
 			canvas.addEventListener('mousemove', function(event) {
 				if (timeOut) {
@@ -164,7 +164,7 @@ void main(){
 					gl.clearColor(0.0, 0.0, 0.0, 1.0);
 					gl.clear(gl.COLOR_BUFFER_BIT);
 					
-					gl.uniform2fv(start, [x1 + stepX * event.clientX, y1 + stepY * event.clientY]);
+					gl.uniform2fv(start, [x1 + stepX * event.touches[0].clientX, y1 + stepY * event.touches[0].clientY]);
 					gl.uniform2fv(a, [x1 / stepX, y1 / stepY]);
 					gl.uniform2fv(b, [stepX, stepY]);
 					gl.uniform1f(h, height);
