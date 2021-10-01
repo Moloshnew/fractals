@@ -158,16 +158,20 @@ void main(){
 					gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 				}
 			});
-			/*
-			canvas.onclick = function(event) {
-				x1 = x1 + stepX * (event.clientX - window.innerWidth / 4);
-				y1 = y1 + stepY * (window.innerHeight - event.clientY - window.innerHeight / 4);
-				stepX /= 2;
-				stepY /= 2;
-				x2 = x1 + event.clientX * stepX;
-				y2 = y1 + event.clientY * stepY;
-			}
-			*/
+			canvas.addEventListener('touchmove', function(event) {
+				if (timeOut) {
+					timeOut = !timeOut;
+					gl.clearColor(0.0, 0.0, 0.0, 1.0);
+					gl.clear(gl.COLOR_BUFFER_BIT);
+					
+					gl.uniform2fv(start, [x1 + stepX * event.clientX, y1 + stepY * event.clientY]);
+					gl.uniform2fv(a, [x1 / stepX, y1 / stepY]);
+					gl.uniform2fv(b, [stepX, stepY]);
+					gl.uniform1f(h, height);
+					
+					gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+				}
+			});
 		}
 		
 
