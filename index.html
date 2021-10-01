@@ -29,10 +29,10 @@ void main(){
     vec2 c = (gl_FragCoord.xy + a) * b;
     vec2 z = c;
     float tmp = 0.0, J, sinJ, sinJ2, sinJ3, sinJ4;
-    for (float i = 0.0; i < 360.0; i += 8.0) {
+    for (float i = 0.0; i < 360.0; i += 1.0) {
         if (z.x * z.x + z.y * z.y < 4.9) {
             tmp = z.x * z.x - z.y * z.y + start.x;
-            z.y = 2.0 * abs(z.x * z.y) + start.y;
+            z.y = 3.0 * abs(z.x * z.y) + start.y;
             z.x = tmp;
             J = i;
         }
